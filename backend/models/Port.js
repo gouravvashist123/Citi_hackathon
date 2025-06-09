@@ -6,14 +6,24 @@ const PortSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
-  holdings: [
-    {
-      symbol: { type: String, required: true }, // e.g., 'TSLA'
-      shares: { type: Number, required: true },
-      purchaseDate: { type: Date, default: Date.now },
-      purchasePrice: { type: Number, required: true }
+  holdings: [{
+    symbol: {
+      type: String,
+      required: true
+    },
+    shares: {
+      type: Number,
+      required: true
+    },
+    purchasePrice: {
+      type: Number,
+      required: true
+    },
+    purchaseDate: {
+      type: Date,
+      default: Date.now
     }
-  ],
+  }],
   createdAt: {
     type: Date,
     default: Date.now
