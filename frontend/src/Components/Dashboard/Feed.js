@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
 import { Card, Row, Col, Badge, Button, Alert, Spinner } from 'react-bootstrap';
 import { usersAPI } from '../../services/api';
 
@@ -55,7 +56,7 @@ const Feed = () => {
 
       {posts.length === 0 && !error && (
         <Alert variant="info">
-          <h5>No posts in your feed yet!</h5>
+          <h5>No posts in your feed !</h5>
           <p>Start following some investors to see their latest SRI insights and investments.</p>
           <Button variant="success" href="/dashboard/investors">
             Find Investors to Follow
