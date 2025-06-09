@@ -1,8 +1,11 @@
-import express from 'express';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';    
-const router = express.Router();
+const express = require('express');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+dotenv.config(); // Ensure env vars like JWT_SECRET are loaded
+
+const router = express.Router();  
 
 // Mock user storage (replace with actual database in production)
 let users = [];
