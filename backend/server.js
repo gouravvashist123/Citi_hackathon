@@ -67,11 +67,10 @@
 // const PORT = process.env.PORT || 5000;
 // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-
 const express = require('express');
 // const mongoose = require('mongoose');
 const cors = require('cors');
-// const dotenv = require('dotenv');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -83,7 +82,6 @@ app.use(express.json());
 
 // MongoDB Connection (using mock data for demo)
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -103,8 +101,8 @@ const connectDB = async () => {
 module.exports = connectDB;
 
 // Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/users', require('./routes/users'));
+app.use('/api/auth', require('./routes/auth').router);
+app.use('/api/users', require('./routes/user'));
 app.use('/api/investors', require('./routes/investors'));
 app.use('/api/suggestions', require('./routes/suggestions'));
 
