@@ -1,6 +1,7 @@
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';    
 const router = express.Router();
 
 // Mock user storage (replace with actual database in production)
@@ -36,11 +37,11 @@ router.post('/register', async (req, res) => {
     users.push(user);
 
     // Create token
-    const token = jwt.sign(
-      { userId: user.id },
-      process.env.JWT_SECRET || 'fallback_secret',
-      { expiresIn: '7d' }
-    );
+    const SECRET = process.env.JWT_SECRET;
+    if (!SECRET) console.warn("⚠️ WARNING: Using fallback JWT secret in dev mode");
+
+    const token = jwt.sign({ userId: user.id }, SECRET || 'fallback_secret', { expiresIn: '7d' });
+
 
     res.status(201).json({
       token,
@@ -94,5 +95,5 @@ router.post('/login', async (req, res) => {
   }
 });
 
-module.exports = router;
-module.exports.users = users; // Export for other routes
+const auth = { router, users };
+module.exports = auth;
